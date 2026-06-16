@@ -32,5 +32,7 @@ export function buildPrompt(job) {
     '',
     'אנא חקור והשב על הנושאים הבאים, כל אחד ב-2-3 שורות:',
     ...requestLines.map((line) => `- ${line}`),
+    '',
+    'התחל את הסיכום במילה בעברית.',
   ].join('\n')
 }
