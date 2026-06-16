@@ -19,6 +19,5 @@ export const FIELD_POOL = [
   { label: 'Company Website', type: 'url' },
   { label: 'Relevant Article', type: 'url' },
   { label: 'Promotion Options', type: 'text' },
-  { label: 'Job Rating', type: 'rating' },
   { label: 'My Questions About the Job', type: 'textarea' },
 ]

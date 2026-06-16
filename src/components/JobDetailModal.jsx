@@ -5,6 +5,7 @@ import { buildPrompt } from '../utils/prompt'
 import DynamicFieldsEditor from './DynamicFieldsEditor'
 import Modal from './Modal'
 import PromptModal from './PromptModal'
+import StarRating from './StarRating'
 
 const inputClasses =
   'w-full rounded-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 ' +
@@ -127,6 +128,11 @@ function JobDetailModal({ job, onClose, onUpdate, onDelete }) {
             onChange={(event) => updateField('role_background', event.target.value)}
             className={inputClasses}
           />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-1">Job Rating</label>
+          <StarRating value={job.rating} onChange={(value) => updateField('rating', value)} />
         </div>
 
         <div className="border-t border-slate-200 dark:border-slate-700 pt-4">

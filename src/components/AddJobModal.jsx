@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Modal from './Modal'
+import StarRating from './StarRating'
 
 const inputClasses =
   'w-full rounded-md border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-900 ' +
@@ -12,6 +13,7 @@ const initialFormState = {
   source: '',
   company_background: '',
   role_background: '',
+  rating: null,
 }
 
 // form modal for creating a new job. only company and role are required;
@@ -100,6 +102,11 @@ function AddJobModal({ onClose, onAdd }) {
             onChange={(event) => updateField('role_background', event.target.value)}
             className={inputClasses}
           />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-1">Job Rating</label>
+          <StarRating value={form.rating} onChange={(value) => updateField('rating', value)} />
         </div>
 
         <div className="flex justify-end gap-2 pt-2">

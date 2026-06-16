@@ -1,6 +1,7 @@
 import { Pencil } from 'lucide-react'
 import { NEXT_STEP_STATUSES } from '../constants'
 import { daysSince, daysUntil, describeNextStep } from '../utils/dates'
+import StarRating from './StarRating'
 
 const NEXT_STEP_TONE_CLASSES = {
   overdue: 'text-red-700 dark:text-red-700 font-medium',
@@ -49,6 +50,12 @@ function JobCard({ job, onClick, onEditClick }) {
         {job.company_name}
       </h3>
       <p className="text-sm text-slate-600 truncate mt-1" dir="auto">{job.role_name}</p>
+
+      {job.rating && (
+        <div className="mt-2">
+          <StarRating value={job.rating} readOnly size={14} />
+        </div>
+      )}
 
       {nextStep && (
         <p className={`text-xs mt-3 ${NEXT_STEP_TONE_CLASSES[nextStep.tone]}`}>{nextStep.label}</p>

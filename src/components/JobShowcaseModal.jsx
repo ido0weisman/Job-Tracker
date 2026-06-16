@@ -49,6 +49,13 @@ function JobShowcaseModal({ job, onClose, onEditClick }) {
         <ShowcaseField label="Company Background" value={job.company_background} multiline />
         <ShowcaseField label="Role Background" value={job.role_background} multiline />
 
+        {job.rating && (
+          <div>
+            <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Job Rating</p>
+            <StarRating value={job.rating} readOnly />
+          </div>
+        )}
+
         {job.dynamic_fields?.length > 0 && (
           <div className="border-t border-slate-200 dark:border-slate-700 pt-4 flex flex-col gap-4">
             {job.dynamic_fields.map((field) => (
