@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+/* enables class-based dark mode (toggled via the "dark" class on <html>)
+   instead of tailwind's default OS-preference-based behavior */
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+  margin: 0;
+}
