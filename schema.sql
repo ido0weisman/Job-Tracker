@@ -25,6 +25,9 @@ create table if not exists jobs (
   -- optional 1-5 star rating the user gives the job. shown on the card once set
   rating smallint check (rating between 1 and 5),
 
+  -- final outcome, only meaningful while status is 'Offer/Rejected' - cleared otherwise
+  outcome text check (outcome in ('Offer', 'Rejected')),
+
   -- modular/custom fields, stored as a flexible key-value list
   -- e.g. [{"id": "uuid", "label": "Contact Person", "type": "text", "value": "Jane Doe"}, ...]
   -- using jsonb (not json) for indexing/query support and to avoid whitespace bloat

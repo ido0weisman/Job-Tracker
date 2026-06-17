@@ -12,6 +12,16 @@ export const COLUMNS = [
 // stages where a "next step" (e.g. an upcoming interview) is meaningful
 export const NEXT_STEP_STATUSES = ['Applied', 'Technical Test', 'Interview']
 
+// the final stage, where a job can be labeled with its outcome
+export const FINAL_STATUS = 'Offer/Rejected'
+
+// outcome badge styles - rejected needs to be bold/high-contrast since the
+// card background is already light red, so a plain red label would blend in
+export const OUTCOME_BADGE_CLASSES = {
+  Offer: 'bg-green-600 text-white',
+  Rejected: 'bg-red-700 text-white font-bold',
+}
+
 // predefined pool of optional modular fields a user can attach to a job card
 export const FIELD_POOL = [
   { label: 'Contact Person', type: 'text' },

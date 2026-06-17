@@ -1,5 +1,5 @@
 import { Pencil } from 'lucide-react'
-import { NEXT_STEP_STATUSES } from '../constants'
+import { NEXT_STEP_STATUSES, OUTCOME_BADGE_CLASSES } from '../constants'
 import { daysSince, daysUntil, describeNextStep } from '../utils/dates'
 import StarRating from './StarRating'
 
@@ -50,6 +50,14 @@ function JobCard({ job, onClick, onEditClick }) {
         {job.company_name}
       </h3>
       <p className="text-sm text-slate-600 truncate mt-1" dir="auto">{job.role_name}</p>
+
+      {job.outcome && (
+        <span
+          className={`inline-block mt-2 text-xs rounded-full px-2 py-0.5 ${OUTCOME_BADGE_CLASSES[job.outcome]}`}
+        >
+          {job.outcome}
+        </span>
+      )}
 
       {job.rating && (
         <div className="mt-2">

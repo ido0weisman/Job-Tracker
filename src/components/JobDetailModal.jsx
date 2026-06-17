@@ -1,6 +1,6 @@
 import { Sparkles, Trash2 } from 'lucide-react'
 import { useState } from 'react'
-import { COLUMNS, NEXT_STEP_STATUSES } from '../constants'
+import { COLUMNS, FINAL_STATUS, NEXT_STEP_STATUSES } from '../constants'
 import { buildPrompt } from '../utils/prompt'
 import DynamicFieldsEditor from './DynamicFieldsEditor'
 import Modal from './Modal'
@@ -16,15 +16,18 @@ const inputClasses =
 function JobDetailModal({ job, onClose, onUpdate, onDelete }) {
   const [isPromptOpen, setIsPromptOpen] = useState(false)
   const showsNextStepField = NEXT_STEP_STATUSES.includes(job.status)
+  const showsOutcomeField = job.status === FINAL_STATUS
 
   function updateField(field, value) {
     onUpdate(job.id, { [field]: value })
   }
 
-  // moving out of an active stage means there's no "next step" anymore
+  // moving out of an active stage means there's no "next step" anymore,
+  // and moving out of the final stage means there's no outcome anymore
   function updateStatus(newStatus) {
     const changes = { status: newStatus }
     if (!NEXT_STEP_STATUSES.includes(newStatus)) changes.next_step_date = null
+    if (newStatus !== FINAL_STATUS) changes.outcome = null
     onUpdate(job.id, changes)
   }
 
@@ -94,6 +97,21 @@ function JobDetailModal({ job, onClose, onUpdate, onDelete }) {
               onChange={(event) => updateField('next_step_date', event.target.value || null)}
               className={inputClasses}
             />
+          </div>
+        )}
+
+        {showsOutcomeField && (
+          <div>
+            <label className="block text-sm font-medium mb-1">Outcome</label>
+            <select
+              value={job.outcome ?? ''}
+              onChange={(event) => updateField('outcome', event.target.value || null)}
+              className={inputClasses}
+            >
+              <option value="">Not set</option>
+              <option value="Offer">Offer</option>
+              <option value="Rejected">Rejected</option>
+            </select>
           </div>
         )}
 

@@ -1,7 +1,7 @@
 import { CircleHelp, Moon, Plus, Sun } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import * as jobsApi from './api/jobs'
-import { NEXT_STEP_STATUSES } from './constants'
+import { FINAL_STATUS, NEXT_STEP_STATUSES } from './constants'
 import AddJobModal from './components/AddJobModal'
 import HelpModal from './components/HelpModal'
 import JobDetailModal from './components/JobDetailModal'
@@ -73,13 +73,15 @@ function App() {
   }
 
   // called when a card is dropped onto a column - moves it to that stage.
-  // leaving an active stage means there's no "next step" anymore.
+  // leaving an active stage means there's no "next step" anymore, and
+  // leaving the final stage means there's no outcome anymore.
   function moveJobToStatus(jobId, status) {
     const job = jobs.find((current) => current.id === jobId)
     if (!job || job.status === status) return
 
     const changes = { status }
     if (!NEXT_STEP_STATUSES.includes(status)) changes.next_step_date = null
+    if (status !== FINAL_STATUS) changes.outcome = null
     updateJob(jobId, changes)
   }
 

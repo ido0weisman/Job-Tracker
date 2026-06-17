@@ -1,5 +1,5 @@
 import { Pencil } from 'lucide-react'
-import { NEXT_STEP_STATUSES } from '../constants'
+import { NEXT_STEP_STATUSES, OUTCOME_BADGE_CLASSES } from '../constants'
 import { daysUntil, describeNextStep, formatDate } from '../utils/dates'
 import Modal from './Modal'
 import StarRating from './StarRating'
@@ -48,6 +48,15 @@ function JobShowcaseModal({ job, onClose, onEditClick }) {
         <ShowcaseField label="Source" value={job.source} />
         <ShowcaseField label="Company Background" value={job.company_background} multiline />
         <ShowcaseField label="Role Background" value={job.role_background} multiline />
+
+        {job.outcome && (
+          <div>
+            <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mb-1">Outcome</p>
+            <span className={`inline-block text-xs rounded-full px-2 py-0.5 ${OUTCOME_BADGE_CLASSES[job.outcome]}`}>
+              {job.outcome}
+            </span>
+          </div>
+        )}
 
         {job.rating && (
           <div>
