@@ -26,7 +26,8 @@ create table if not exists jobs (
   rating smallint check (rating between 1 and 5),
 
   -- final outcome, only meaningful while status is 'Offer/Rejected' - cleared otherwise
-  outcome text check (outcome in ('Offer', 'Rejected')),
+  -- 'No Response' covers companies that went silent for a long time
+  outcome text check (outcome in ('Offer', 'Rejected', 'No Response')),
 
   -- modular/custom fields, stored as a flexible key-value list
   -- e.g. [{"id": "uuid", "label": "Contact Person", "type": "text", "value": "Jane Doe"}, ...]

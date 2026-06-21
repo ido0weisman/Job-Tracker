@@ -111,6 +111,7 @@ function JobDetailModal({ job, onClose, onUpdate, onDelete }) {
               <option value="">Not set</option>
               <option value="Offer">Offer</option>
               <option value="Rejected">Rejected</option>
+              <option value="No Response">No Response</option>
             </select>
           </div>
         )}

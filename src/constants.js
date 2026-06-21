@@ -20,6 +20,7 @@ export const FINAL_STATUS = 'Offer/Rejected'
 export const OUTCOME_BADGE_CLASSES = {
   Offer: 'bg-green-600 text-white',
   Rejected: 'bg-red-700 text-white font-bold',
+  'No Response': 'bg-gray-500 text-white',
 }
 
 // predefined pool of optional modular fields a user can attach to a job card
